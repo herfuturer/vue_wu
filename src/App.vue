@@ -14,11 +14,12 @@ export default {
   name: "",
   data() {
     return {
-      todos: [
-        { id: 1, title: '吃饭', done: false },
-        { id: 2, title: '睡觉', done: true },
-        { id: 3, title: '打辉辉', done: true },
-      ]
+      // todos: [
+      //   { id: 1, title: '吃饭', done: false },
+      //   { id: 2, title: '睡觉', done: true },
+      //   { id: 3, title: '打辉辉', done: true },
+      // ]
+      todos: JSON.parse(localStorage.getItem('tds')) || []
     }
   },
   components: { TodoHeader, TodoMain, TodoFooter },
@@ -47,6 +48,14 @@ export default {
     // 清除已完成任务
     deldone() {
       this.todos = this.todos.filter(item => !item.done)
+    }
+  },
+  watch: {
+    todos: {
+      handler(newVal, oldVal){
+        localStorage.setItem('tds',JSON.stringify(this.todos))
+      },
+      deep: true
     }
   }
 }

@@ -5,6 +5,7 @@
     :item="item" 
     :key="item.id"
     :delTodo="delTodo"
+    :switchTodo="switchTodo"
     ></TodoItem>
   </ul>
 </template>
@@ -14,7 +15,7 @@ import TodoItem from './TodoItem.vue';
 export default {
   name: "",
   components: { TodoItem },
-  props:['todos', 'delTodo']
+  props:['todos', 'delTodo', 'switchTodo']
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <li @mouseover="btnShow=true" @mouseleave="btnShow=false" :class="{active: btnShow}">
+  <li @mouseover="btnShow = true" @mouseleave="btnShow = false" :class="{ active: btnShow }">
     <label>
-      <input type="checkbox" :checked="item.done" />
-      <span>{{item.title}}</span>
+      <input type="checkbox" :checked="item.done" @change="switchItem" />
+      <span>{{ item.title }}</span>
     </label>
     <button class="btn btn-danger" v-show="btnShow" @click="dele">删除</button>
   </li>
@@ -11,17 +11,20 @@
 <script>
 export default {
   name: '',
-  data(){
+  data() {
     return {
       btnShow: false
     }
   },
-  props: ['item', 'delTodo'],
+  props: ['item', 'delTodo', 'switchTodo'],
   methods: {
-    dele(){
+    dele() {
       this.delTodo(this.item.id)
+    },
+    switchItem() {
+      this.switchTodo(this.item.id)
     }
-  }
+  },
 }
 </script>
 

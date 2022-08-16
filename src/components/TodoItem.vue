@@ -1,16 +1,21 @@
 <template>
-  <li>
+  <li @mouseover="btnShow=true" @mouseleave="btnShow=false" :class="{active: btnShow}">
     <label>
       <input type="checkbox" />
-      <span>xxxxx</span>
+      <span>打辉辉</span>
     </label>
-    <button class="btn btn-danger">删除</button>
+    <button class="btn btn-danger" v-show="btnShow">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: '',
+  data(){
+    return {
+      btnShow: false
+    }
+  }
 }
 </script>
 
@@ -38,7 +43,7 @@ li label li input {
 
 li button {
   float: right;
-  display: none;
+  /* display: none; */
   margin-top: 3px;
 }
 
@@ -48,5 +53,9 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+
+.active {
+  background-color: #ddd;
 }
 </style>

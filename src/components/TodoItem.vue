@@ -1,10 +1,10 @@
 <template>
   <li @mouseover="btnShow=true" @mouseleave="btnShow=false" :class="{active: btnShow}">
     <label>
-      <input type="checkbox" />
-      <span>打辉辉</span>
+      <input type="checkbox" :checked="item.done" />
+      <span>{{item.title}}</span>
     </label>
-    <button class="btn btn-danger" v-show="btnShow">删除</button>
+    <button class="btn btn-danger" v-show="btnShow" @click="dele">删除</button>
   </li>
 </template>
 
@@ -14,6 +14,12 @@ export default {
   data(){
     return {
       btnShow: false
+    }
+  },
+  props: ['item', 'delTodo'],
+  methods: {
+    dele(){
+      this.delTodo(this.item.id)
     }
   }
 }

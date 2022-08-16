@@ -1,7 +1,7 @@
 <template>
   <div class="todo-container">
-    <TodoHeader></TodoHeader>
-    <TodoMain></TodoMain>
+    <TodoHeader :addTodo="addTodo"></TodoHeader>
+    <TodoMain :todos="todos" :delTodo="delTodo"></TodoMain>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -12,7 +12,32 @@ import TodoMain from './components/TodoMain.vue';
 import TodoFooter from './components/TodoFooter.vue';
 export default {
   name: "",
-  components: { TodoHeader, TodoMain, TodoFooter }
+  data(){
+    return {
+      todos:[
+        {id:1,title:'吃饭',done:false},
+        {id:2,title:'睡觉',done:true},
+        {id:3,title:'打辉辉',done:true},
+      ]
+    }
+  },
+  components: { TodoHeader, TodoMain, TodoFooter },
+  methods:{
+    addTodo(key){
+      // 判读是否已经添加过数据
+      let flag = this.todos.some(item => item.title === key.title)
+      if(flag){
+        console.log('已经添加过了');
+      } else {
+        this.todos.unshift(key)
+      }
+    },
+
+    // 定义删除的方法
+    delTodo(id){
+      this.todos = this.todos.filter(item => item.id !== id)
+    }
+  }
 }
 </script>
 

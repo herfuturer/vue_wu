@@ -1,12 +1,28 @@
 <template>
-    <div class="todo-header">
-      <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
-    </div>
+  <div class="todo-header">
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="addItem" />
+  </div>
 </template>
 
 <script>
+import { nanoid } from 'nanoid'
 export default {
   name: '',
+  props: ['addTodo'],
+  methods: {
+    // 添加项
+    addItem(e) {
+      if (e.target.value.trim()) {
+        // 去掉首尾空格之后有值
+        let newItem = { id: nanoid(), title: e.target.value, done: false }
+        this.addTodo(newItem)
+      } else {
+        // 输入空值
+        alert('不能输入空值')
+      }
+      e.target.value = ''
+    }
+  }
 }
 </script>
 

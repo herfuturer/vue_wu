@@ -1,7 +1,7 @@
 <template>
   <div class="todo-container">
     <TodoHeader></TodoHeader>
-    <TodoMain></TodoMain>
+    <TodoMain :todos="todos"></TodoMain>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -12,7 +12,16 @@ import TodoMain from './components/TodoMain.vue';
 import TodoFooter from './components/TodoFooter.vue';
 export default {
   name: "",
-  components: { TodoHeader, TodoMain, TodoFooter }
+  components: { TodoHeader, TodoMain, TodoFooter },
+  data() {
+    return {
+      todos: [
+        { id: 1, title: '肉蛋充饥', done: true },
+        { id: 2, title: '醉酒狂暴', done: false },
+        { id: 3, title: '爆破酒桶', done: false },
+      ],
+    }
+  },
 }
 </script>
 

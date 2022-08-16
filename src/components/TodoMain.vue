@@ -1,8 +1,6 @@
 <template>
   <ul class="todo-main">
-    <TodoItem></TodoItem>
-    <TodoItem></TodoItem>
-    <TodoItem></TodoItem>
+    <TodoItem v-for="todo in todos" :todo="todo"></TodoItem>
   </ul>
 </template>
 
@@ -10,7 +8,8 @@
 import TodoItem from './TodoItem.vue';
 export default {
   name: "",
-  components: { TodoItem }
+  components: { TodoItem },
+  props:['todos']
 }
 </script>
 

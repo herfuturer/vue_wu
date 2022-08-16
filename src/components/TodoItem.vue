@@ -1,16 +1,22 @@
 <template>
-  <li>
+  <li @mouseover="btnShow=!btnShow" @mouseleave="btnShow=!btnShow" :class="{active: btnShow}">
     <label>
-      <input type="checkbox" />
-      <span>xxxxx</span>
+      <input type="checkbox" :checked="todo.done" />
+      <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger">删除</button>
+    <button class="btn btn-danger" v-show="btnShow">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: '',
+  data(){
+    return {
+      btnShow: false
+    }
+  },
+  props:['todo']
 }
 </script>
 
@@ -38,7 +44,7 @@ li label li input {
 
 li button {
   float: right;
-  display: none;
+  /* display: none; */
   margin-top: 3px;
 }
 
@@ -48,5 +54,9 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+
+.active{
+  background-color: #ddd;
 }
 </style>

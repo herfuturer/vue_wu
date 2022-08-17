@@ -1,42 +1,25 @@
 <template>
-  <div class="wrap">
-    <Child ref="child"></Child>
-    <hr>
-    <p>子组件传递过来的消息:{{msg}}</p>
-    <button @click="divorce">解绑事件</button>
+  <div class="app">
+    <Header></Header>
+    <Footer ref="msg"></Footer>
   </div>
 </template>
 
 <script>
-import Child from "./components/Child.vue";
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 export default {
-  name: 'App',
-  components: { Child },
-  data() {
-    return {
-      msg:''
+    name: "",
+    components: { Header, Footer },
+    methods:{
+      
     }
-  },
-  methods:{
-    fn(val){
-      this.msg += val
-    },
-    divorce(){
-      this.$refs.child.$off('hehe')
-    }
-  },
-  mounted(){
-    // this.$refs.child.$on('hehe', val => {
-    //   this.msg = val
-    // })
-    this.$refs.child.$on('hehe', this.fn)
-  }
 }
 </script>
 
-<style>
-.wrap {
+<style scoped>
+.app{
+  background-color: rgb(109, 196, 116);
   padding: 20px;
-  background: lightpink;
 }
 </style>

@@ -1,16 +1,29 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" />
+      <input type="checkbox" @change="switchAll" />
     </label>
-    <span> <span>已完成0</span> / 全部2 </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <span> <span>已完成{{this.hasDone}}</span> / 全部{{ $store.state.todos.length }} </span>
+    <button class="btn btn-danger" @click="delDone">清除已完成任务</button>
   </div>
 </template>
 
 <script>
 export default {
   name: '',
+  computed: {
+    hasDone() {
+      return this.$store.state.todos.filter(item => item.done).length
+    }
+  },
+  methods: {
+    delDone() {
+      this.$store.commit('delAllDone')
+    },
+    switchAll(e){
+      this.$store.commit('switchTodos', e.target.checked)
+    }
+  }
 }
 </script>
 

@@ -1,12 +1,30 @@
 <template>
-    <div class="todo-header">
-      <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
-    </div>
+  <div class="todo-header">
+    <input type="text" placeholder="请输入你的任务名称，按回车键确认" @keyup.enter="addTodo" v-model="keyword" />
+  </div>
 </template>
 
 <script>
+import { nanoid } from 'nanoid'
 export default {
-  name: '',
+  name: 'TodoHeader',
+  data() {
+    return {
+      keyword: ''
+    }
+  },
+  methods: {
+    addTodo(e) {
+      let value = e.target.value.trim()
+      if (value) {
+        let newitem = { id: nanoid(), name: value, done: false }
+        this.$store.commit('addTodo', newitem)
+      } else {
+        console.log('不能输入空值');
+      }
+      e.target.value = ''
+    }
+  }
 }
 </script>
 

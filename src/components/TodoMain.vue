@@ -1,8 +1,8 @@
 <template>
   <ul class="todo-main">
-    <TodoItem></TodoItem>
-    <TodoItem></TodoItem>
-    <TodoItem></TodoItem>
+    <TodoItem v-for="item in $store.state.todos" 
+    :item="item"
+    :key="item.id"></TodoItem>
   </ul>
 </template>
 

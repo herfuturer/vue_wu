@@ -1,19 +1,28 @@
 <template>
   <li @mouseover="btnShow=true" @mouseleave="btnShow=false" :class="{bgc: btnShow}">
     <label>
-      <input type="checkbox" />
-      <span>xxxxx</span>
+      <input type="checkbox" :checked="item.done" @change="swit" />
+      <span>{{item.name}}</span>
     </label>
-    <button class="btn btn-danger" v-show="btnShow">删除</button>
+    <button class="btn btn-danger" v-show="btnShow" @click="del">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: '',
+  props: ['item'],
   data(){
     return {
       btnShow: false
+    }
+  },
+  methods: {
+    del(){
+      this.$store.commit('delTodo', this.item.id)
+    },
+    swit(){
+      this.$store.commit('changeItem',this.item.id)
     }
   }
 }

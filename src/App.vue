@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo-container">
     <TodoHeader></TodoHeader>
     <TodoMain></TodoMain>
     <TodoFooter></TodoFooter>

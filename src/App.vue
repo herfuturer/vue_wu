@@ -1,28 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>{{$store.state.num}}</h1>
+    <button @click="addNum">点击加1</button>
+    <button>点击减1</button>
+    <button @click="addAsOdd">奇数时加1</button>
+    <button>2秒后加1</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'app',
+  methods:{
+    addNum(){
+      this.$store.dispatch('addNum')
+    },
+
+    addAsOdd(){
+      this.$store.dispatch('addAsOdd')
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>

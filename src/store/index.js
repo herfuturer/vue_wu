@@ -27,8 +27,15 @@ const actions = {
   }
 }
 
+const getters = {
+  computeNum(state) {
+    return state.num+100
+  }
+}
+
 export default new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  getters
 })
